@@ -12,6 +12,8 @@
                         class="btn btn-primary">Dettagli</a>
                 </div>
             </div>
+
+            
         @endforeach
 
     </div>
