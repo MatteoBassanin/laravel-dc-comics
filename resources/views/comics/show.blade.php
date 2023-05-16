@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '$comic->title')
+@section('title', 'Info')
 @section('content')
     {{ $comic->title }}
 

@@ -2,6 +2,9 @@
 
 @section('title', 'comics')
 @section('content')
+
+    <a href="{{ route('comics.create') }}" class="btn btn-primary">Add Comic</a>
+
     <div class="d-flex flex-wrap">
         @foreach ($comics as $comic)
             <div class="card" style="width: 18rem;">
@@ -12,8 +15,6 @@
                         class="btn btn-primary">Dettagli</a>
                 </div>
             </div>
-
-            
         @endforeach
 
     </div>
