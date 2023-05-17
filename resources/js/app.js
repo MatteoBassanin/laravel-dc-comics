@@ -6,10 +6,3 @@ import.meta.glob([
 ])
 
 
-let deleting = document.querySelector('.delete_button');
-
-function Doublecheck() {
-    prompt("sei sicuro ?");
-}
-
-deleting.addEventListener(click, Doublecheck, false);
