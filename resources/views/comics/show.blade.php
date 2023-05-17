@@ -21,4 +21,5 @@
     </div>
 
     <a href="{{ route('comics.index') }}" type="button" class="btn btn-primary">Torna indietro</a>
+    <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" type="button" class="btn btn-warning">Modifica</a>
 @endsection

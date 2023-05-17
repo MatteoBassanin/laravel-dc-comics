@@ -32,5 +32,6 @@
             <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}">
         </div>
         <button type="submit" class="btn btn-primary">Invia</button>
+        <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-secondary">Torna indietro</a>
     </form>
 @endsection
