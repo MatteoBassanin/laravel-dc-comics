@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -98,20 +99,20 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {   
 
-        $request->validate([
-            'title'=>'required|max:50',
-            'thumb'=>'required|max:255',
-            'price'=>'required|max:10',
-            'series'=>'required|max:50',
-            'sale_date'=>'required',
-            'type'=>'required|max:20',
-        ]);
+        // $request->validate([
+        //     'title'=>'required|max:50',
+        //     'thumb'=>'required|max:255',
+        //     'price'=>'required|max:10',
+        //     'series'=>'required|max:50',
+        //     'sale_date'=>'required',
+        //     'type'=>'required|max:20',
+        // ]);
 
-        $comic = Comic::findOrFail($id);
-        $form_data = $request->all();
+        // $comic = Comic::findOrFail($id);
+        $form_data = $this->validation($request->all()) ;
         $comic->update($form_data);
 
         return redirect()-> route('comics.show',['comic' => $comic->id]);
@@ -130,5 +131,36 @@ class ComicController extends Controller
         $comic->delete();
 
         return redirect()-> route('comics.index');
+    }
+
+
+    private function validation($data){
+
+        $validator = Validator::make(
+            $data,
+            [
+                'title'=>'required|max:50',
+                'thumb'=>'required|max:255',
+                'price'=>'required|max:10',
+                'series'=>'required|max:50',
+                'sale_date'=>'required',
+                'type'=>'required|max:20',
+            ],
+            [
+                'title.required' => "Titolo richiesto",
+                'title.max' => "Caratteri massimi da inserire sono 50",
+                'thumb.required' => "Url richiesto",
+                'thumb.max' => "Caratteri massimi da inserire sono 255",
+                'price.required' => "Prezzo richiesto",
+                'price.max' => "Caratteri massimi da inserire sono 10",
+                'series.required' => "Serie richiesta",
+                'series.max' => "Caratteri massimi da inserire sono 50",
+                'sale_date.required' => "Data richiesta",
+                'type.required' => "Tipo richiesto",
+                'type.max' => "Caratteri massimi da inserire sono 20",
+            ]
+        )->validate();
+
+        return $validator;
     }
 }

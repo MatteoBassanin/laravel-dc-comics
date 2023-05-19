@@ -30,7 +30,7 @@
             <input type="text" class="form-control @error('series') is-invalid @enderror" id="series" name="series"
                 value="{{ old('series', $comic->series) }}">
             @error('series')
-                <div class="invalid-feedback">{{ $message }}
+                <div class="invalid-feedback">Attenzione errore
                 </div>
             @enderror
         </div>
